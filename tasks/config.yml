@@ -1,7 +1,33 @@
 ---
 # Configure Tilix
+- name: install dconf
+  dnf:
+    name: dconf
+    state: present
+  become: yes
+  become_user: root
 - name: backup current Tilix preferences
-  shell: dconf dump /com/gexperts/Tilix/ > /tmp/tilix_preferences.{{ ansible_date_time.epoch }}
+  shell: dconf dump /com/gexperts/Tilix/ > {{ tilix_preferences_backup_file }}
+  args:
+    creates: "{{ tilix_preferences_backup_file }}"
+- name: get checksum of preferences
+  stat:
+    path: "{{ role_path }}/files/preferences"
+    get_checksum: True
+    checksum_algorithm: sha1
+  register: preferences_checksum
+- name: get checksum of preferences backup
+  stat:
+    path: "{{ tilix_preferences_backup_file }}"
+    get_checksum: True
+    checksum_algorithm: sha1
+  register: backup_checksum
 - name: load Tilix preferences
   shell: echo -e "{{ lookup('file', 'preferences') }}" | dconf load /com/gexperts/Tilix/
+  when: preferences_checksum.stat.checksum != backup_checksum.stat.checksum
+- name: delete preferences backup
+  file:
+    path: "{{ tilix_preferences_backup_file }}"
+    state: absent
+  when: preferences_checksum.stat.checksum == backup_checksum.stat.checksum
 ...

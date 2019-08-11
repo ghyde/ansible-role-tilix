@@ -1,3 +1,4 @@
 ---
+tilix_preferences_backup_file: /tmp/tilix_preferences.{{ ansible_date_time.epoch }}
 tilix_install_extension: True
 ...

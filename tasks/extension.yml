@@ -1,5 +1,11 @@
 ---
 # Install gnome-shell extension
+- name: install gnome-shell
+  dnf:
+    name: gnome-shell
+    state: present
+  become: yes
+  become_user: root
 - name: check if Tilix Dropdown extension is installed
   stat:
     path: "{{ ansible_user_dir }}/.local/share/gnome-shell/extensions/{{ tilix_dropdown_extension_name }}"
@@ -19,8 +25,12 @@
     args:
       chdir: "{{ ansible_user_dir }}/.local/share/gnome-shell/extensions/"
       creates: "{{ ansible_user_dir }}/.local/share/gnome-shell/extensions/{{ tilix_dropdown_extension_name }}"
-  - name: enable TilixDropdown extensions
-    command: gnome-shell-extension-tool -e {{ tilix_dropdown_extension_name }}
-    when: "'{{ tilix_dropdown_extension_name }}' not in enabled_extensions.stdout"
   when: not tilix_dropdown_extension.stat.exists
+- name: get enabled extensions
+  command: gsettings get org.gnome.shell enabled-extensions
+  changed_when: False
+  register: enabled_extensions
+- name: enable TilixDropdown extensions
+  command: gnome-shell-extension-tool -e {{ tilix_dropdown_extension_name }}
+  when: "'{{ tilix_dropdown_extension_name }}' not in enabled_extensions.stdout"
 ...

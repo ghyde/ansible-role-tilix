@@ -1,17 +1,9 @@
 ---
 # Install Tilix
-- block:
-  - name: install Gnome packages
-    dnf:
-      name: "{{ item }}"
-      state: present
-    loop:
-    - dconf
-    - gnome-shell
-  - name: install Tilix
-    dnf:
-      name: tilix
-      state: present
+- name: install Tilix
+  dnf:
+    name: tilix
+    state: present
   become: yes
   become_user: root
 ...
