@@ -10,6 +10,7 @@
   shell: dconf dump /com/gexperts/Tilix/ > {{ tilix_preferences_backup_file }}
   args:
     creates: "{{ tilix_preferences_backup_file }}"
+  register: created_backup
 - name: get checksum of preferences
   stat:
     path: "{{ role_path }}/files/preferences"
@@ -33,5 +34,7 @@
   file:
     path: "{{ tilix_preferences_backup_file }}"
     state: absent
-  when: preferences_checksum.stat.checksum == backup_checksum.stat.checksum
+  when: >
+    preferences_checksum.stat.checksum == backup_checksum.stat.checksum and
+    created_backup.changed
 ...
