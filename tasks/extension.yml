@@ -32,5 +32,5 @@
   register: enabled_extensions
 - name: enable TilixDropdown extensions
   command: gnome-shell-extension-tool -e {{ tilix_dropdown_extension_name }}
-  when: "'{{ tilix_dropdown_extension_name }}' not in enabled_extensions.stdout"
+  when: tilix_dropdown_extension_name not in enabled_extensions.stdout
 ...
