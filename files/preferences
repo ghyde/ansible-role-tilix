@@ -1,3 +1,17 @@
+[/]
+quake-height-percent=40
+quake-specific-monitor=0
+accelerators-enabled=true
+terminal-title-style='small'
+window-state=128
+theme-variant='dark'
+new-instance-mode='new-window'
+enable-wide-handle=false
+app-title='${appName}: ${sessionName}'
+warn-vte-config-issue=false
+quake-width-percent=100
+terminal-title-show-when-single=true
+
 [profiles]
 default='2b7c4080-0ddd-46c5-8f23-563fd3ba789d'
 list=['2b7c4080-0ddd-46c5-8f23-563fd3ba789d', '3cf9d258-f80d-4851-be24-54657707aad5']
@@ -9,6 +23,7 @@ visible-name='Default'
 dim-color-set=false
 palette=['#272822', '#F92672', '#A6E22E', '#F4BF75', '#66D9EF', '#AE81FF', '#A1EFE4', '#F8F8F2', '#75715E', '#F92672', '#A6E22E', '#F4BF75', '#66D9EF', '#AE81FF', '#A1EFE4', '#F9F8F5']
 badge-color-set=false
+use-system-font=true
 cursor-colors-set=false
 highlight-colors-set=false
 use-theme-colors=false
@@ -65,13 +80,3 @@ scrollback-lines=8192
 bold-color='#ffffff'
 show-scrollbar=true
 use-custom-command=false
-
-[/]
-accelerators-enabled=true
-terminal-title-style='small'
-window-state=128
-theme-variant='dark'
-new-instance-mode='new-window'
-enable-wide-handle=false
-warn-vte-config-issue=false
-terminal-title-show-when-single=true
