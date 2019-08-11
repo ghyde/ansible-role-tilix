@@ -23,7 +23,11 @@
     checksum_algorithm: sha1
   register: backup_checksum
 - name: load Tilix preferences
-  shell: echo -e "{{ lookup('file', 'preferences') }}" | dconf load /com/gexperts/Tilix/
+  shell: |
+      set -o pipefail
+      echo -e "{{ lookup('file', 'preferences') }}" | dconf load /com/gexperts/Tilix/
+  args:
+      executable: /bin/bash
   when: preferences_checksum.stat.checksum != backup_checksum.stat.checksum
 - name: delete preferences backup
   file:
