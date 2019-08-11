@@ -1,0 +1,7 @@
+---
+# Configure Tilix
+- name: backup current Tilix preferences
+  shell: dconf dump /com/gexperts/Tilix/ > /tmp/tilix_preferences.{{ ansible_date_time.epoch }}
+- name: load Tilix preferences
+  shell: echo -e "{{ lookup('file', 'preferences') }}" | dconf load /com/gexperts/Tilix/
+...
