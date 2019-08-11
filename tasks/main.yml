@@ -3,7 +3,7 @@
   - import_tasks: install.yml
   - import_tasks: config.yml
   - import_tasks: extension.yml
-    when: tilix_install_extension | bool
+    when: tilix_install_dropdown_extension | bool
   tags:
   - tilix
 ...
