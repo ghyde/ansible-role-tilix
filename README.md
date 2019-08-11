@@ -37,6 +37,15 @@ You will need to restart GNOME Shell in order for the extension
 [TilixDropdown][tilix_dropdown] to become active. On Fedora running Wayland,
 this requires logging out and logging back in.
 
+## Update Preferences File
+
+To update this role with your current Tilix preferences, run the following
+command:
+
+```bash
+dconf dump /com/gexperts/Tilix/ > files/preferences
+```
+
 ## License
 
 [MIT](LICENSE)
