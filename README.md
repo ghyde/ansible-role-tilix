@@ -11,7 +11,7 @@ Tilix on Fedora.
 |name|description|type|default|
 |---|---|---|---|
 |tilix_preferences_backup_file|Path to backup file of Tilix preferences|file path|/tmp/tilix_preferences.{{ ansible_date_time.epoch }}|
-|tilix_install_dropdown_extension|Install [TilixDropdown][tilix_dropdown] extension?|bool|True|
+|tilix_install_dropdown_extension|Install [TilixDropdown][tilix_dropdown] extension?|bool|False|
 
 ### vars/main.yml
 
